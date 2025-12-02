@@ -39,29 +39,21 @@ def pass_zero(input_data, start_pos=50):
     Returns the number of times the dial rotates past 0.
     """
     pos = start_pos
-    past_zero_count = 0
+    total = 0
 
     for direction, steps in input_data:
-        passes = steps // 100
-        remainder = steps % 100
+        for _ in range(steps):
+            if direction == "L":
+                pos = (pos - 1) % 100
+            elif direction == "R":
+                pos = (pos + 1) % 100
+            else:
+                raise ValueError("Direction must be 'L' or 'R'")
 
-        if direction == "L":
-            new_pos = (pos - steps) % 100
-            if remainder > pos:
-                passes += 1
+            if pos == 0:
+                total += 1
 
-        elif direction == "R":
-            new_pos = (pos + steps) % 100
-            if pos + remainder >= 100:
-                passes += 1
-
-        else:
-            raise ValueError("Direction must be 'L' or 'R'")
-
-        past_zero_count += passes
-        pos = new_pos
-
-    return past_zero_count
+    return total
 
 
 if __name__ == "__main__":
