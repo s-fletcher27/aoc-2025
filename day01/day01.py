@@ -13,6 +13,7 @@ def load_instructions(filename: str):
                 instructions.append((direction, steps))
     return instructions
 
+
 def is_zero(input_data, start_pos=50):
     """
     Processes the list of (direction, steps) instructions starting from start_pos.
