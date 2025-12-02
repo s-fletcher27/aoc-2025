@@ -8,6 +8,7 @@ def load_ranges(filename: str):
                 ranges.append((int(start), int(end)))
     return ranges
 
+
 def is_invalid_id(n: int) -> bool:
     s = str(n)
     if len(s) % 2 != 0:
@@ -22,8 +23,9 @@ def solve_day2(filename: str):
     for start, end in ranges:
         for n in range(start, end + 1):
             if is_invalid_id(n):
-                total+=n
+                total += n
     return total
+
 
 if __name__ == "__main__":
     print("Answer:", solve_day2("day02_input.txt"))
